@@ -1,10 +1,9 @@
 package com.msy.plus.mapper;
 
 import com.msy.plus.core.mapper.MyMapper;
-import com.msy.plus.entity.Permission;
-import com.msy.plus.entity.RoleDO;
-import com.msy.plus.entity.RolePermissionDO;
-import com.msy.plus.entity.RoleWithPermissionDO;
+import com.msy.plus.entity.SysRole;
+import com.msy.plus.entity.RoleRefPermission;
+import com.msy.plus.entity.SysRoleWithPermission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @author MoShuying
  * @date 2018/07/15
  */
-public interface RoleMapper extends MyMapper<RoleDO> {
+public interface SysRoleMapper extends MyMapper<SysRole> {
   /**
    * 赋予默认角色给账户
    *
@@ -27,7 +26,7 @@ public interface RoleMapper extends MyMapper<RoleDO> {
    * @param id
    * @return
    */
-  RoleWithPermissionDO getDetailById(Long id);
+  SysRoleWithPermission getDetailById(Long id);
 
   /**
    * 保存用户权限
@@ -47,5 +46,5 @@ public interface RoleMapper extends MyMapper<RoleDO> {
    * @param roleId
    * @return List<RolePermissionDO>
    */
-  List<RolePermissionDO> getAllRolePermissionTableRow(Long roleId);
+  List<RoleRefPermission> getAllRolePermissionTableRow(Long roleId);
 }

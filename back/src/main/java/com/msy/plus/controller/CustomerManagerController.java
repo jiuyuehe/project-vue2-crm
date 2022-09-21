@@ -4,7 +4,7 @@ import com.msy.plus.core.jwt.JwtUtil;
 import com.msy.plus.core.response.Result;
 import com.msy.plus.core.response.ResultGenerator;
 import com.msy.plus.dto.CustomerManagerList;
-import com.msy.plus.entity.CustomerManager;
+import com.msy.plus.entity.Customer;
 import com.msy.plus.service.CustomerManagerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.annotations.Api;
@@ -61,15 +61,15 @@ public class CustomerManagerController {
 
     @Operation(description = "客户管理添加")
     @PostMapping
-    public Result add(@RequestBody CustomerManager customerManager,@RequestHeader Map<String, String> headers) {
-        if(customerManager.getId()!=null){
-            customerManager.setId(null);
+    public Result add(@RequestBody Customer customer, @RequestHeader Map<String, String> headers) {
+        if(customer.getId()!=null){
+            customer.setId(null);
         }
         String header = jwtUtil.getJwtProperties().getHeader();
         String id= jwtUtil.getId(headers.get(header)).get();
-        customerManager.setInputuser(Integer.valueOf(id));
-        customerManager.setSeller(Integer.valueOf(id));
-        customerManagerService.save(customerManager);
+        customer.setInputuser(Integer.valueOf(id));
+        customer.setSeller(Integer.valueOf(id));
+        customerManagerService.save(customer);
         return ResultGenerator.genOkResult();
     }
 
@@ -82,16 +82,16 @@ public class CustomerManagerController {
 
     @Operation(description = "客户管理更新")
     @PutMapping
-    public Result update(@RequestBody CustomerManager customerManager) {
-    customerManagerService.update(customerManager);
+    public Result update(@RequestBody Customer customer) {
+    customerManagerService.update(customer);
         return ResultGenerator.genOkResult();
     }
 
     @Operation(description = "客户管理获取详细信息")
     @GetMapping("/{id}")
     public Result detail(@PathVariable Long id) {
-    CustomerManager customerManager = customerManagerService.getById(id);
-        return ResultGenerator.genOkResult(customerManager);
+    Customer customer = customerManagerService.getById(id);
+        return ResultGenerator.genOkResult(customer);
     }
 
     @Operation(description = "客户管理分页查询")

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-public class Permission {
+public class SysPermission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

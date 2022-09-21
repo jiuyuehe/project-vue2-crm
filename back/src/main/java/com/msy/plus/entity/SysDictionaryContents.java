@@ -2,8 +2,8 @@ package com.msy.plus.entity;
 
 import javax.persistence.*;
 
-@Table(name = "dictionary_contents")
-public class DictionaryContents {
+@Table(name = "sys_dictionary_contents")
+public class SysDictionaryContents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

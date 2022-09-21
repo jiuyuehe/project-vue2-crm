@@ -2,7 +2,7 @@ package com.msy.plus.controller;
 
 import com.msy.plus.core.response.Result;
 import com.msy.plus.core.response.ResultGenerator;
-import com.msy.plus.entity.Permission;
+import com.msy.plus.entity.SysPermission;
 import com.msy.plus.service.PermissionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.annotations.Api;
@@ -67,8 +67,8 @@ public class PermissionController {
     public Result list(@RequestParam(defaultValue = "1") Integer page,
     @RequestParam(defaultValue = "10") Integer size) {
         PageHelper.startPage(page, size);
-        List<Permission> list = permissionService.listAll();
-        PageInfo<Permission> pageInfo = PageInfo.of(list);
+        List<SysPermission> list = permissionService.listAll();
+        PageInfo<SysPermission> pageInfo = PageInfo.of(list);
         return ResultGenerator.genOkResult(pageInfo);
     }
 }

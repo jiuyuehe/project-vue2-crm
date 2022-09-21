@@ -8,6 +8,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EmployeeDetail extends Employee{
+public class EmployeeDetail extends User{
     List<Long> roleIds;
 }

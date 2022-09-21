@@ -23,7 +23,10 @@ import javax.annotation.Resource;
  *
  * @author MoShuying
  * @date 2018/05/27
- */
+ * 注解默认不可用，通过开启注解：在配置类中开启注解 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+ * @Secured：专门判断用户是否具有角色，可以写在方法或类上，参数以 ROLE_ 开头
+ * @PreAuthorize\PostAuthorize： PreAuthorize 访问的类或方法执行前判断权限，而 PostAuthorize 在执行之后，Post 基本不用；允许与 ROLE_ 开头。
+**/
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

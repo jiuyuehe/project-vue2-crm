@@ -4,9 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.msy.plus.core.response.Result;
 import com.msy.plus.core.response.ResultGenerator;
-import com.msy.plus.dto.RoleWithPermissionDTO;
-import com.msy.plus.entity.RoleDO;
-import com.msy.plus.entity.RolePermissionDO;
+import com.msy.plus.dto.SysRoleWithPermissionDTO;
+import com.msy.plus.entity.SysRole;
+import com.msy.plus.entity.RoleRefPermission;
 import com.msy.plus.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -26,7 +26,7 @@ import java.util.*;
  * @author MoShuying
  * @date 2018/05/27
  */
-@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('ADMIN')")
 @Api(tags={"角色接口"})
 @RestController
 @RequestMapping("/role")
@@ -35,8 +35,8 @@ public class RoleController {
 
   @Operation(description = "角色添加")
   @PostMapping
-  public Result add(@RequestBody final RoleWithPermissionDTO roleDTO) {
-    if(roleDTO.getPermissions()==null){
+  public Result add(@RequestBody final SysRoleWithPermissionDTO roleDTO) {
+    if(roleDTO.getSysPermissions()==null){
       return ResultGenerator.genFailedResult("尚未添加角色权限");
     }
     try{
@@ -45,7 +45,7 @@ public class RoleController {
       return ResultGenerator.genFailedResult("提交的信息中包含已存在的字段");
     }
     List<Long> temp = new ArrayList<>();
-    roleDTO.getPermissions().forEach(e->{ temp.add(e.getId()); });
+    roleDTO.getSysPermissions().forEach(e->{ temp.add(e.getId()); });
     this.roleService.savePermissions(roleDTO.getId(),temp);
     return ResultGenerator.genOkResult();
   }
@@ -53,32 +53,32 @@ public class RoleController {
   @Operation(description = "角色删除")
   @DeleteMapping("/{id}")
   public Result delete(@PathVariable final Long id) {
-    List<RolePermissionDO> raw = this.roleService.getAllRolePermissionTableRow(id);
-    for(RolePermissionDO e :raw){
+    List<RoleRefPermission> raw = this.roleService.getAllRolePermissionTableRow(id);
+    for(RoleRefPermission e :raw){
       this.roleService.deleteRolePermissionItem(id,e.getPermission_id());
     }
-    this.roleService.deleteById(id);
+    this.roleService.removeById(id);
     return ResultGenerator.genOkResult();
   }
 
   @Operation(description = "角色更新")
   @PutMapping
-  public Result update(@RequestBody final RoleWithPermissionDTO roleWithPermissionDTO) {
+  public Result update(@RequestBody final SysRoleWithPermissionDTO roleWithPermissionDTO) {
     // 更新用户基本信息
-    this.roleService.update(roleWithPermissionDTO);
+    this.roleService.updateDTO(roleWithPermissionDTO);
     List<Long> nowPermissions = new ArrayList<>();
-    if(roleWithPermissionDTO.getPermissions()==null){
+    if(roleWithPermissionDTO.getSysPermissions()==null){
       return ResultGenerator.genOkResult();
     }
 
-    List<RolePermissionDO> rawPer = this.roleService.getAllRolePermissionTableRow(roleWithPermissionDTO.getId());
+    List<RoleRefPermission> rawPer = this.roleService.getAllRolePermissionTableRow(roleWithPermissionDTO.getId());
     // 表中权限信息去重
     Set<Long> raw = new HashSet<>();
-    for(RolePermissionDO e: rawPer){
+    for(RoleRefPermission e: rawPer){
       raw.add(e.getPermission_id());
     }
 
-    roleWithPermissionDTO.getPermissions().forEach(e->{ nowPermissions.add(e.getId()); });
+    roleWithPermissionDTO.getSysPermissions().forEach(e->{ nowPermissions.add(e.getId()); });
 
     // diff运算
     Set<Long> adds = new HashSet<>();
@@ -111,7 +111,7 @@ public class RoleController {
   @Operation(description = "角色详情")
   @GetMapping("/{id}")
   public Result detail(@PathVariable final Long id) {
-    final RoleDO role = this.roleService.getDetailById(id);
+    final SysRole role = this.roleService.getDetailById(id);
     return ResultGenerator.genOkResult(role);
   }
 
@@ -126,8 +126,8 @@ public class RoleController {
       @RequestParam(defaultValue = "1") final Integer page,
       @RequestParam(defaultValue = "10") final Integer size) {
     PageHelper.startPage(page, size);
-    final List<RoleDO> list = this.roleService.listAll();
-    final PageInfo<RoleDO> pageInfo = new PageInfo<>(list);
+    final List<SysRole> list = this.roleService.list();
+    final PageInfo<SysRole> pageInfo = new PageInfo<>(list);
     return ResultGenerator.genOkResult(pageInfo);
   }
 }

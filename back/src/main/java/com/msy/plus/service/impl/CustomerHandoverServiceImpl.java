@@ -4,7 +4,6 @@ import com.msy.plus.dto.CustomerHandoverList;
 import com.msy.plus.mapper.CustomerHandoverMapper;
 import com.msy.plus.entity.CustomerHandover;
 import com.msy.plus.service.CustomerHandoverService;
-import com.msy.plus.core.service.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

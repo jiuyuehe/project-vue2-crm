@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.msy.plus.mapper.DictionaryDetailsMapper">
-  <resultMap id="BaseResultMap" type="com.msy.plus.entity.DictionaryDetails">
+<mapper namespace="com.msy.plus.mapper.SysDictionaryDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.msy.plus.entity.SysDictionaryDetails">
     <!--
       WARNING - @mbg.generated
     -->
@@ -12,7 +12,7 @@
   </resultMap>
   <select id="listWithKeyword" resultMap="BaseResultMap">
     select *
-    from dictionary_details as d
+    from sys_dictionary_details as d
     where d.parentId = #{id}
     <if test="keyword != null and keyword != '' ">
       and (d.sequence like concat('%', #{keyword}, '%')

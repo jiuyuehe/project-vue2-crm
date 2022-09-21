@@ -1,8 +1,7 @@
 package com.msy.plus.service;
 
-import com.msy.plus.entity.DictionaryContents;
-import com.msy.plus.entity.DictionaryDetails;
-import com.msy.plus.core.service.Service;
+import com.msy.plus.entity.SysDictionaryContents;
+import com.msy.plus.entity.SysDictionaryDetails;
 
 import java.util.List;
 
@@ -10,6 +9,6 @@ import java.util.List;
 * @author MoShuYing
 * @date 2021/05/18
 */
-public interface DictionaryDetailsService extends Service<DictionaryDetails> {
-    List<DictionaryContents> listWithKeyword(int id,String keyword);
+public interface DictionaryDetailsService extends com.baomidou.mybatisplus.extension.service.IService<SysDictionaryDetails> {
+    List<SysDictionaryContents> listWithKeyword(int id, String keyword);
 }

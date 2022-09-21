@@ -4,12 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.msy.plus.core.jwt.JwtUtil;
 import com.msy.plus.core.response.Result;
 import com.msy.plus.core.response.ResultGenerator;
-import com.msy.plus.entity.Employee;
 import com.msy.plus.entity.EmployeeDetail;
 import com.msy.plus.entity.EmployeeWithRoleDO;
+import com.msy.plus.entity.User;
 import com.msy.plus.service.EmployeeService;
 import com.msy.plus.util.JsonUtils;
-import com.msy.plus.util.RedisUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -122,7 +121,7 @@ public class EmployeeController {
             employee.setPassword(this.passwordEncoder.encode(employee.getPassword().trim()));
         }
         try{
-            employeeService.update((Employee) employee);
+            employeeService.update((User) employee);
         }catch (Exception e){
             e.printStackTrace();
             String msg = "信息有误";

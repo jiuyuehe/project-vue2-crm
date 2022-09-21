@@ -15,5 +15,5 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class AccountWithRoleDO extends AccountDO {
   /** 账户的角色列表 */
-  private List<RoleDO> roles;
+  private List<SysRole> roles;
 }

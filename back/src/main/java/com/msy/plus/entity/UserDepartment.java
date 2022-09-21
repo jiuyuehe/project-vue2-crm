@@ -2,7 +2,8 @@ package com.msy.plus.entity;
 
 import javax.persistence.*;
 
-public class Department {
+@Table(name="user_department")
+public class UserDepartment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -10,6 +11,10 @@ public class Department {
     private String sn;
 
     private String name;
+
+    /** 企业id */
+    @Column(name = "ent_id")
+    private Integer entId;
 
     /**
      * @return id
@@ -37,6 +42,14 @@ public class Department {
      */
     public void setSn(String sn) {
         this.sn = sn;
+    }
+
+    public Integer getEntId() {
+        return entId;
+    }
+
+    public void setEntId(Integer entId) {
+        this.entId = entId;
     }
 
     /**

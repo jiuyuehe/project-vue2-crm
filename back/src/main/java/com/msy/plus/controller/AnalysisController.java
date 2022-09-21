@@ -66,7 +66,7 @@ public class AnalysisController {
         String id= jwtUtil.getId(headers.get(header)).get();
         List<Long> roleIds = employeeService.getDetailById(Integer.valueOf(id).longValue()).getRoleIds();
         for(Long roleId:roleIds){
-            RoleWithPermissionDO  roleWithPermissionDO =  roleService.getDetailById(roleId);
+            SysRoleWithPermission roleWithPermissionDO =  roleService.getDetailById(roleId);
             if(roleWithPermissionDO==null) {
                 continue;
             }

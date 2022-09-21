@@ -1,9 +1,9 @@
 package com.msy.plus.service.impl;
 
-import com.msy.plus.mapper.PermissionMapper;
-import com.msy.plus.entity.Permission;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.msy.plus.mapper.SysPermissionMapper;
+import com.msy.plus.entity.SysPermission;
 import com.msy.plus.service.PermissionService;
-import com.msy.plus.core.service.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +15,7 @@ import javax.annotation.Resource;
 */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class PermissionServiceImpl extends AbstractService<Permission> implements PermissionService {
-    @Resource
-    private PermissionMapper permissionMapper;
+public class PermissionServiceImpl extends ServiceImpl<SysPermissionMapper,SysPermission> implements PermissionService {
+
 
 }

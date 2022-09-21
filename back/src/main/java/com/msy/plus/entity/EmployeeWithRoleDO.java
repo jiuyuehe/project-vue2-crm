@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EmployeeWithRoleDO extends Employee{
+public class EmployeeWithRoleDO extends User{
     private String departmentName;
     String roleNames;
 }

@@ -4,9 +4,8 @@ import com.msy.plus.dto.AnalysisQuery;
 import com.msy.plus.dto.CustomerManagerList;
 import com.msy.plus.entity.Analysis;
 import com.msy.plus.mapper.CustomerManagerMapper;
-import com.msy.plus.entity.CustomerManager;
+import com.msy.plus.entity.Customer;
 import com.msy.plus.service.CustomerManagerService;
-import com.msy.plus.core.service.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +18,12 @@ import java.util.List;
 */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class CustomerManagerServiceImpl extends AbstractService<CustomerManager> implements CustomerManagerService {
+public class CustomerManagerServiceImpl extends AbstractService<Customer> implements CustomerManagerService {
     @Resource
     private CustomerManagerMapper customerManagerMapper;
 
     @Override
-    public CustomerManager getById(Object id) {
+    public Customer getById(Object id) {
         return this.customerManagerMapper.getDetailById(id);
     }
 
@@ -40,4 +39,8 @@ public class CustomerManagerServiceImpl extends AbstractService<CustomerManager>
         }
         return customerManagerMapper.queryAnalysis(analysisQuery);
     }
+
+
 }
+
+

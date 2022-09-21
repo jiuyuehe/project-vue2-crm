@@ -3,7 +3,7 @@ package com.msy.plus.entity;
 import javax.persistence.*;
 
 @Table(name = "dictionary_details")
-public class DictionaryDetails {
+public class SysDictionaryDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

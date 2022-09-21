@@ -1,17 +1,13 @@
 package com.msy.plus.dto;
 
-import com.msy.plus.entity.Permission;
-import com.msy.plus.entity.RoleWithPermissionDO;
+import com.msy.plus.entity.SysPermission;
+import com.msy.plus.entity.SysRoleWithPermission;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
@@ -20,7 +16,7 @@ import java.util.List;
 @Data
 @Schema(name = "角色及权限传输实体")
 @EqualsAndHashCode(callSuper = true)
-public class RoleWithPermissionDTO extends RoleWithPermissionDO {
+public class SysRoleWithPermissionDTO extends SysRoleWithPermission {
     private static final long serialVersionUID = -123223812341212L;
     /** 角色Id */
     @NotEmpty(message = "ID不能为空")
@@ -37,5 +33,5 @@ public class RoleWithPermissionDTO extends RoleWithPermissionDO {
 
     /** 角色权限 */
     @Schema(name = "角色权限列表")
-    private List<Permission> permissions;
+    private List<SysPermission> sysPermissions;
 }

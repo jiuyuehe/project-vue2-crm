@@ -1,10 +1,10 @@
 package com.msy.plus.service;
 
-import com.msy.plus.core.service.Service;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.msy.plus.dto.RoleDTO;
-import com.msy.plus.entity.RoleDO;
-import com.msy.plus.entity.RolePermissionDO;
-import com.msy.plus.entity.RoleWithPermissionDO;
+import com.msy.plus.entity.SysRole;
+import com.msy.plus.entity.RoleRefPermission;
+import com.msy.plus.entity.SysRoleWithPermission;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author MoShuying
  * @date 2018/05/27
  */
-public interface RoleService extends Service<RoleDO> {
+public interface RoleService extends IService<SysRole> {
   /**
    * 赋予默认角色给账户
    *
@@ -25,21 +25,21 @@ public interface RoleService extends Service<RoleDO> {
    *
    * @param roleDTO 角色传输实体
    */
-  void save(RoleDTO roleDTO);
+  void saveDTO(RoleDTO roleDTO);
 
   /**
    * 更新角色
    *
    * @param roleDTO 角色传输实体
    */
-  void update(RoleDTO roleDTO);
+  void updateDTO(RoleDTO roleDTO);
 
   /**
    * 获取角色信息并查询角色权限
    * @param id
    * @return
    */
-  RoleWithPermissionDO getDetailById(Long id);
+  SysRoleWithPermission getDetailById(Long id);
 
   /**
    * 保存用户权限
@@ -59,5 +59,5 @@ public interface RoleService extends Service<RoleDO> {
    * @param roleId
    * @return List<RolePermissionDO>
    */
-  List<RolePermissionDO> getAllRolePermissionTableRow(Long roleId);
+  List<RoleRefPermission> getAllRolePermissionTableRow(Long roleId);
 }

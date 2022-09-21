@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.msy.plus.mapper.EmployeeMapper">
-    <resultMap id="BaseResultMap" type="com.msy.plus.entity.Employee">
+<mapper namespace="com.msy.plus.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.msy.plus.entity.User">
         <!--
           WARNING - @mbg.generated
         -->
@@ -31,10 +31,10 @@
         age,
         d.name as departmentName,
         group_concat(r.name order by e.name ASC SEPARATOR ',') as roleNames
-        from employee as e
-        left join employee_role as er on er.employeeId = e.id
-        left join role as r on er.roleId = r.id
-        left join department as d on d.id = e.dept
+        from user as e
+        left join user_ref_sys_role as er on er.employeeId = e.id
+        left join sys_role as r on er.roleId = r.id
+        left join user_department as d on d.id = e.dept
         where (e.name like concat('%',#{keyword},'%') or e.email like concat('%',#{keyword},'%'))
         <if test="dept != null and dept >0">
             and e.dept = #{dept}
@@ -50,18 +50,18 @@
                e.dept     as dept,
                e.admin    as admin,
                er.roleId  as roleIds
-        from employee as e
-                 left join employee_role er on er.employeeId = e.id
+        from user as e
+                 left join user_ref_sys_role er on er.employeeId = e.id
         where e.id = #{id}
     </select>
     <delete id="deleteEmployeeWithRole">
         delete
-        from employee_role
+        from user_ref_sys_role
         where employeeId = #{id}
     </delete>
     <select id="saveRoles">
         <if test="roles !=null">
-            insert into employee_role (employeeId,roleId) values
+            insert into user_ref_sys_role (employeeId,roleId) values
             <foreach collection="roles" item="item" index="index" separator=",">
                 (
                 #{id},
@@ -73,12 +73,12 @@
 
     <select id="getAllEmployeeRoleTableRow" resultType="java.lang.Long">
         select roleId
-        from employee_role
+        from user_ref_sys_role
         where employeeId = #{id}
     </select>
     <delete id="deleteEmployeeWithRoleItem">
         delete
-        from employee_role
+        from user_ref_sys_role
         where employeeId = #{id}
           and roleId = #{roleId}
     </delete>

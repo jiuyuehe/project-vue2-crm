@@ -2,7 +2,7 @@ package com.msy.plus.controller;
 
 import com.msy.plus.core.response.Result;
 import com.msy.plus.core.response.ResultGenerator;
-import com.msy.plus.entity.Department;
+import com.msy.plus.entity.UserDepartment;
 import com.msy.plus.service.DepartmentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -40,8 +40,8 @@ public class DepartmentController {
 
     @Operation(description = "部门添加")
     @PostMapping
-    public Result add(@RequestBody Department department) {
-        departmentService.save(department);
+    public Result add(@RequestBody UserDepartment userDepartment) {
+        departmentService.save(userDepartment);
         return ResultGenerator.genOkResult();
     }
 
@@ -54,16 +54,16 @@ public class DepartmentController {
 
     @Operation(description = "部门更新")
     @PatchMapping
-    public Result update(@RequestBody Department department) {
-        departmentService.update(department);
+    public Result update(@RequestBody UserDepartment userDepartment) {
+        departmentService.update(userDepartment);
         return ResultGenerator.genOkResult();
     }
 
     @Operation(description = "获取部门详细信息")
     @GetMapping("/{id}")
     public Result detail(@PathVariable Long id) {
-        Department department = departmentService.getById(id);
-        return ResultGenerator.genOkResult(department);
+        UserDepartment userDepartment = departmentService.getById(id);
+        return ResultGenerator.genOkResult(userDepartment);
     }
 
     @Operation(description = "分页查询部门")
@@ -76,8 +76,8 @@ public class DepartmentController {
     public Result list(@RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer size) {
         PageHelper.startPage(page, size);
-        List<Department> list = departmentService.listAll();
-        PageInfo<Department> pageInfo = PageInfo.of(list);
+        List<UserDepartment> list = departmentService.listAll();
+        PageInfo<UserDepartment> pageInfo = PageInfo.of(list);
         return ResultGenerator.genOkResult(pageInfo);
     }
 }

@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-public class Employee {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +25,9 @@ public class Employee {
 
     @Column(name = "hireDate")
     private Date hiredate;
+
+    @Column(name = "ent_id")
+    private Date entId;
 
     /**
      * 状态 1正常 0离职

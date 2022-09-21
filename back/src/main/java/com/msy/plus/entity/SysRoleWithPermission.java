@@ -9,6 +9,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class RoleWithPermissionDO extends RoleDO {
-    List<Permission> permissions;
+public class SysRoleWithPermission extends SysRole {
+    List<SysPermission> sysPermissions;
 }

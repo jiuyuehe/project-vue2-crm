@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.msy.plus.mapper.RoleMapper">
-    <resultMap id="RoleMap" type="com.msy.plus.entity.RoleDO">
+<mapper namespace="com.msy.plus.mapper.SysRoleMapper">
+    <resultMap id="RoleMap" type="com.msy.plus.entity.SysRole">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="sn" jdbcType="VARCHAR" property="sn"/>
-        <result column="permission" jdbcType="BIGINT" property="permission"/>
     </resultMap>
-    <resultMap id="RoleWithPermission" type="com.msy.plus.entity.RoleWithPermissionDO" extends="RoleMap">
-        <collection property="permissions" javaType="java.util.List" ofType="com.msy.plus.entity.Permission">
+    <resultMap id="RoleWithPermission" type="com.msy.plus.entity.SysRoleWithPermission" extends="RoleMap">
+        <collection property="sysPermissions" javaType="java.util.List" ofType="com.msy.plus.entity.SysPermission">
             <result column="permission_id" jdbcType="BIGINT" property="id"/>
             <result column="permission_name" jdbcType="VARCHAR" property="name"/>
             <result column="expression" jdbcType="VARCHAR" property="expression"/>
@@ -16,11 +15,11 @@
     </resultMap>
 
     <insert id="saveAsDefaultRole" parameterType="java.lang.Long">
-        INSERT INTO employee_role (employeeId, roleId)
+        INSERT INTO user_ref_sys_role (employeeId, roleId)
         VALUES (#{accountId}, (SELECT r.id FROM role r WHERE name="USER"))
     </insert>
     <insert id="savePermissions" parameterType="java.util.List">
-        insert into role_permission (role_id, permission_id) values
+        insert into role_ref_permission (role_id, permission_id) values
         <foreach collection="permissions" item="item" index="index" separator=",">
             (
             #{roleId},
@@ -30,12 +29,12 @@
     </insert>
     <delete id="deleteRolePermissionItem" >
         delete
-        from role_permission
+        from role_ref_permission
         where role_id = #{roleId}
           and permission_id = #{permissionId}
     </delete>
-    <select id="getAllRolePermissionTableRow" parameterType="java.lang.Long" resultType="com.msy.plus.entity.RolePermissionDO">
-        select * from role_permission where role_id = #{roleId}
+    <select id="getAllRolePermissionTableRow" parameterType="java.lang.Long" resultType="com.msy.plus.entity.RoleRefPermission">
+        select * from role_ref_permission where role_id = #{roleId}
     </select>
     <select id="getDetailById" parameterType="java.lang.Long" resultMap="RoleWithPermission">
         select r.id         as id,
@@ -44,9 +43,9 @@
                p.id         as permission_id,
                p.name       as permission_name,
                p.expression as expression
-        from role as r
-                 left join role_permission as rp on r.id = rp.role_id
-                 left join permission p on rp.permission_id = p.id
+        from sys_role as r
+                 left join role_ref_permission as rp on r.id = rp.role_id
+                 left join sys_permission p on rp.permission_id = p.id
         where r.id = #{id}
     </select>
 </mapper>

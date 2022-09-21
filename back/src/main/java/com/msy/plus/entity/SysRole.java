@@ -10,13 +10,15 @@ import javax.persistence.*;
  * 角色实体
  *
  * @author MoShuying
- * @date 2018/05/27
+ * @date 2022
  */
+
+
 @Data
 @Getter
 @Setter
-@Table(name = "role")
-public class RoleDO {
+@Table(name = "sys_role")
+public class SysRole {
   /** 角色Id */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

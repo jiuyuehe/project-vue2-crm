@@ -2,7 +2,7 @@ package com.msy.plus.controller;
 
 import com.msy.plus.core.response.Result;
 import com.msy.plus.core.response.ResultGenerator;
-import com.msy.plus.entity.DictionaryContents;
+import com.msy.plus.entity.SysDictionaryContents;
 import com.msy.plus.service.DictionaryContentsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.annotations.Api;
@@ -32,8 +32,8 @@ public class DictionaryContentsController {
 
     @Operation(description = "数据字典添加")
     @PostMapping
-    public Result add(@RequestBody DictionaryContents dictionaryContents) {
-        dictionaryContentsService.save(dictionaryContents);
+    public Result add(@RequestBody SysDictionaryContents sysDictionaryContents) {
+        dictionaryContentsService.save(sysDictionaryContents);
         return ResultGenerator.genOkResult();
     }
 
@@ -44,18 +44,19 @@ public class DictionaryContentsController {
 //        return ResultGenerator.genOkResult();
 //    }
 
+
     @Operation(description = "数据字典更新")
     @PutMapping
-    public Result update(@RequestBody DictionaryContents dictionaryContents) {
-    dictionaryContentsService.update(dictionaryContents);
+    public Result update(@RequestBody SysDictionaryContents sysDictionaryContents) {
+    dictionaryContentsService.saveOrUpdate(sysDictionaryContents);
         return ResultGenerator.genOkResult();
     }
 
     @Operation(description = "数据字典获取详细信息")
     @GetMapping("/{id}")
     public Result detail(@PathVariable Long id) {
-    DictionaryContents dictionaryContents = dictionaryContentsService.getById(id);
-        return ResultGenerator.genOkResult(dictionaryContents);
+    SysDictionaryContents sysDictionaryContents = dictionaryContentsService.getById(id);
+        return ResultGenerator.genOkResult(sysDictionaryContents);
     }
 
     @Operation(description = "数据字典分页查询")
@@ -73,8 +74,8 @@ public class DictionaryContentsController {
             inKeyword = keyword;
         }
         PageHelper.startPage(page, size);
-        List<DictionaryContents> list = dictionaryContentsService.listWithKeyword(inKeyword);
-        PageInfo<DictionaryContents> pageInfo = PageInfo.of(list);
+        List<SysDictionaryContents> list = dictionaryContentsService.listWithKeyword(inKeyword);
+        PageInfo<SysDictionaryContents> pageInfo = PageInfo.of(list);
         return ResultGenerator.genOkResult(pageInfo);
     }
 }

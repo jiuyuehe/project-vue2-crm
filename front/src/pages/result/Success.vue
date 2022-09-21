@@ -13,22 +13,22 @@
           <detail-list-item term="负责人">曲丽丽</detail-list-item>
           <detail-list-item term="生效时间">016-12-12 ~ 2017-12-12</detail-list-item>
         </detail-list>
-        <a-steps :current="1" progressDot>
-          <a-step title="创建项目">
-            <a-step-item-group slot="description">
-              <a-step-item title="曲丽丽" icon="dingding-o"/>
-              <a-step-item title="2016-12-12 12:32"/>
-            </a-step-item-group>
-          </a-step>
-          <a-step title="部门初审">
-            <a-step-item-group slot="description">
-              <a-step-item title="周毛毛" icon="dingding-o" :iconStyle="{color: '#00A0E9'}"/>
-              <a-step-item title="催一下" :titleStyle="{color: '#00A0E9'}"/>
-            </a-step-item-group>
-          </a-step>
-          <a-step title="财务复核"></a-step>
-          <a-step title="完成" ></a-step>
-        </a-steps>
+<!--        <a-steps :current="1" progressDot>-->
+<!--          <a-step title="创建项目">-->
+<!--            <a-step-item-group slot="description">-->
+<!--              <a-step-item title="曲丽丽" icon="dingding-o"/>-->
+<!--              <a-step-item title="2016-12-12 12:32"/>-->
+<!--            </a-step-item-group>-->
+<!--          </a-step>-->
+<!--          <a-step title="部门初审">-->
+<!--            <a-step-item-group slot="description">-->
+<!--              <a-step-item title="周毛毛" icon="dingding-o" />-->
+<!--              <a-step-item title="催一下" />-->
+<!--            </a-step-item-group>-->
+<!--          </a-step>-->
+<!--          <a-step title="财务复核"></a-step>-->
+<!--          <a-step title="完成" ></a-step>-->
+<!--        </a-steps>-->
       </div>
     </result>
   </a-card>
@@ -37,13 +37,13 @@
 <script>
 import Result from '../../components/result/Result'
 import DetailList from '../../components/tool/DetailList'
-import AStepItem from '../../components/tool/AStepItem'
+// import AStepItem from '../../components/tool/AStepItem'
 
-const AStepItemGroup = AStepItem.Group
+// const AStepItemGroup = AStepItem.Group
 const DetailListItem = DetailList.Item
 export default {
   name: 'Success',
-  components: {AStepItemGroup, AStepItem, DetailListItem, DetailList, Result},
+  components: { DetailListItem, DetailList, Result},
   data () {
     return {
       title: '提交成功',

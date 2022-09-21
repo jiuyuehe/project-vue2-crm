@@ -3,6 +3,7 @@ package com.msy.plus.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class CustomerManagerList {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

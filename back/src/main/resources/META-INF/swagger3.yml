@@ -4,7 +4,7 @@ application:
   # 项目版本信息
   version: 1.0
   # 项目描述信息
-  description: RESTFul APIs
+  description: RESTFul APIsMySQL - @192.168.0.64
   # 项目许可
   license: Apache License 2.0
   url:

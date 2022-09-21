@@ -56,7 +56,7 @@ public class CustomerFollowUpHistoryController {
     @Operation(description = "客户跟进记录更新")
     @PutMapping
     public Result update(@RequestBody CustomerFollowUpHistory customerFollowUpHistory) {
-    customerFollowUpHistoryService.update(customerFollowUpHistory);
+    customerFollowUpHistoryService.saveOrUpdate(customerFollowUpHistory);
         return ResultGenerator.genOkResult();
     }
 

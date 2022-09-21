@@ -1,13 +1,13 @@
 package com.msy.plus.mapper;
 
 import com.msy.plus.core.mapper.MyMapper;
-import com.msy.plus.entity.Employee;
 import com.msy.plus.entity.EmployeeDetail;
 import com.msy.plus.entity.EmployeeWithRoleDO;
+import com.msy.plus.entity.User;
 
 import java.util.List;
 
-public interface EmployeeMapper extends MyMapper<Employee> {
+public interface UserMapper extends MyMapper<User> {
     EmployeeDetail getDetailById(Long id);
 
     /**

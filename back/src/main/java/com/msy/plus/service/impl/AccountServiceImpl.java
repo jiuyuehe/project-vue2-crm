@@ -1,7 +1,6 @@
 package com.msy.plus.service.impl;
 
 import com.msy.plus.core.response.ResultCode;
-import com.msy.plus.core.service.AbstractService;
 import com.msy.plus.dto.AccountDTO;
 import com.msy.plus.entity.AccountDO;
 import com.msy.plus.entity.AccountWithRoleDO;
@@ -27,7 +26,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class AccountServiceImpl extends AbstractService<AccountDO> implements AccountService {
+public class AccountServiceImpl extends ServiceImpl<accountMapper,AccountDO> implements AccountService {
   @Resource private AccountMapper accountMapper;
   @Resource private RoleService roleService;
   @Resource private PasswordEncoder passwordEncoder;
