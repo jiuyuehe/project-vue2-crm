@@ -12,6 +12,11 @@ const routerMap = {
     path: '/login',
     component: () => import('@/pages/login')
   },
+  baobei: {
+    authority: '*',
+    path: '/baobei',
+    component: () => import('@/pages/baobei/baobeiLink.vue')
+  },
   root: {
     path: '/',
     name: '首页',

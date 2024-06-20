@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yly.crm.mapper.BizsMapper">
+
+    <resultMap id="BaseResultMap" type="com.yly.crm.entity.BizsDO">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="bizType" column="biz_type" jdbcType="OTHER"/>
+            <result property="bizResources" column="biz_resources" jdbcType="OTHER"/>
+            <result property="bizEntName" column="biz_ent_name" jdbcType="VARCHAR"/>
+            <result property="bizDesc" column="biz_desc" jdbcType="VARCHAR"/>
+            <result property="bizStage" column="biz_stage" jdbcType="VARCHAR"/>
+            <result property="products" column="products" jdbcType="OTHER" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+            <result property="bizCount" column="biz_count" jdbcType="INTEGER"/>
+            <result property="bizOkday" column="biz_okday" jdbcType="DATE"/>
+            <result property="employeeId" column="employee_id" jdbcType="INTEGER"/>
+            <result property="employeeName" column="employee_name" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,biz_type,biz_resources,
+        biz_ent_name,biz_desc,biz_stage,
+        products,biz_count,biz_okday,
+        employee_id,employee_name,create_time,
+        update_time
+    </sql>
+</mapper>
